@@ -112,6 +112,7 @@ curl -s \
   --request POST \
   --header "Authorization: Bearer $access_token" \
   --header "Content-Type: application/json" \
+  --header "User-Agent: github-action/v1.0" \
   --data-raw "{
     \"identifier\": \"$github_repo_without_org\",
     \"title\": \"$github_repo_without_org\",
