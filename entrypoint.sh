@@ -51,7 +51,7 @@ else
   curl -X 'POST' \
     'https://api.getport.io/v1/blueprints' \
     -H 'Content-Type: application/json' \
-    -H 'Authorization: Bearer $access_token' \
+    -H "Authorization: Bearer $access_token" \
     -d '{
         "identifier": "$blueprintIdentifier",
         "title": "$blueprintIdentifier",
