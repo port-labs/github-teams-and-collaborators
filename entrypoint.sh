@@ -21,7 +21,7 @@ teams=$(curl -s \
   --header "Accept: application/vnd.github.v3+json" \
   --request GET \
   "https://api.github.com/repos/${github_repo}/teams" \
-  | jq -r '.[].slug')
+  | jq -r '.[].slug' | paste -sd "|")
 
 # Convert collaborators and teams to JSON arrays
 access_token=$(curl -s --location --request POST 'https://api.getport.io/v1/auth/access_token' --header 'Content-Type: application/json' --data-raw "{
@@ -74,7 +74,7 @@ fi
 
 echo "Checking if team exists in Port and creating it if it doesn't"
 
-for team in "${teams[@]}"
+for team in $(echo "$teams" | tr "|" " ")
 do
   # Check if the team exists in Port
   response=$(curl -s \
