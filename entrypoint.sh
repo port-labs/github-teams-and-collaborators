@@ -40,14 +40,14 @@ echo "Validating if a blueprint with the identifier $blueprintIdentifier identif
 response=$(curl -X 'GET' \
   "https://api.getport.io/v1/blueprints/$blueprintIdentifier" \ 
   -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer $access_token' \
+  -H "Authorization: Bearer $access_token" \
   --write-out '%{http_code}' \
   --silent \
   --output /dev/null)
 
 if [ $response -eq 200 ]; then
   echo "Blueprint with the identifier $blueprintIdentifier exists in Port"
-else
+elif [ $response -eq 404 ]; then
   curl -X 'POST' \
     'https://api.getport.io/v1/blueprints' \
     -H 'Content-Type: application/json' \
@@ -74,4 +74,6 @@ else
         "mirrorProperties": {},
         "relations": {}
       }'
+else
+  echo "Something went wrong fetching $blueprintIdentifier blueprint from Port with status code $response"
 fi
