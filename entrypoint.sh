@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 githubToken="$INPUT_TOKEN"
 githubRepo="$INPUT_REPO"

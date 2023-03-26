@@ -5,6 +5,6 @@ RUN apk add --no-cache jq
 
 COPY entrypoint.sh /
 
-RUN chmod +x /entrypoint.sh
+RUN chmod 777 /entrypoint.sh
 
 ENTRYPOINT /entrypoint.sh
