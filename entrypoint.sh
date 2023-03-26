@@ -38,7 +38,7 @@ access_token=$(curl --location --request POST 'https://api.getport.io/v1/auth/ac
 echo "Validating if a blueprint with the identifier $blueprintIdentifier identifier exists in Port"
 
 response=$(curl -X 'GET' \
-  'https://api.getport.io/v1/blueprints/$blueprintIdentifier' \ 
+  "https://api.getport.io/v1/blueprints/$blueprintIdentifier" \ 
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer $access_token' \
   --write-out '%{http_code}' \
