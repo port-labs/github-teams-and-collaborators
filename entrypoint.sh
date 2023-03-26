@@ -45,6 +45,8 @@ response=$(curl -X 'GET' \
   --silent \
   --output /dev/null)
 
+echo "Get blueprint response code: $response"
+
 if [ $response -eq 200 ]; then
   echo "Blueprint with the identifier $blueprintIdentifier exists in Port"
 elif [ $response -eq 404 ]; then
