@@ -52,28 +52,28 @@ elif [ $response -eq 404 ]; then
     'https://api.getport.io/v1/blueprints' \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $access_token" \
-    -d '{
-        "identifier": "$blueprintIdentifier",
-        "title": "$blueprintIdentifier",
-        "icon": "Service",
-        "schema": {
-          "properties": {
-            "collaborators": {
-                "type": "array",
-                "title": "Collaborators",
-                "items": {
-                    "type": "string",
-                    "format": "user"
+    -d "{
+        \"identifier\": \"$blueprintIdentifier\",
+        \"title\": \"$blueprintIdentifier\",
+        \"icon\": \"Service\",
+        \"schema\": {
+          \"properties\": {
+            \"collaborators\": {
+                \"type\": \"array\",
+                \"title\": \"Collaborators\",
+                \"items\": {
+                    \"type\": \"string\",
+                    \"format\": \"user\"
                 }
             }
           },
-          "required": [
+          \"required\": [
           ]
         },
-        "calculationProperties": {},
-        "mirrorProperties": {},
-        "relations": {}
-      }'
+        \"calculationProperties\": {},
+        \"mirrorProperties\": {},
+        \"relations\": {}
+      }"
 else
   echo "Something went wrong fetching $blueprintIdentifier blueprint from Port with status code $response"
 fi
