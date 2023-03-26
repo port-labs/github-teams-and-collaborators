@@ -39,8 +39,8 @@ echo "Validating if a blueprint with the identifier $blueprintIdentifier identif
 
 response=$(curl -X 'GET' \
   'https://api.getport.io/v1/blueprints/$blueprintIdentifier' \ 
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer $access_token' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer $access_token' \
   --write-out '%{http_code}' \
   --silent \
   --output /dev/null)
@@ -50,8 +50,8 @@ if [ $response -eq 200 ]; then
 else
   curl -X 'POST' \
     'https://api.getport.io/v1/blueprints' \
-    --header 'Content-Type: application/json' \
-    --header 'Authorization: Bearer $access_token' \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer $access_token' \
     -d '{
         "identifier": "$blueprintIdentifier",
         "title": "$blueprintIdentifier",
