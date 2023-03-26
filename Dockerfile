@@ -1,7 +1,7 @@
 # Use the Alpine Linux base image
 FROM alpine:latest
 
-RUN apk add --no-cache jq
+RUN apk add --no-cache jq curl
 
 COPY entrypoint.sh /
 
