@@ -83,6 +83,8 @@ do
     --header "Content-Type: application/json" \
     "https://api.getport.io/v1/teams/$team")
   
+  echo "Get team response: $response"
+  echo "$team"
   if [ "$(echo "$response" | jq -r .error)" = "team_not_found" ]; then
     # If the team doesn't exist, create it in Port
     curl -s \
