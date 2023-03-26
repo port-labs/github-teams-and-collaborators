@@ -16,7 +16,7 @@ jobs:
         with:
           route: GET /repos/{owner}/{repo}/teams
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository_name }}
+          repo: ${{ github.event.repository.name }}
           headers: |
             Accept: application/vnd.github.v3+json
             Authorization: token ${{ secrets.GITHUB_TOKEN }}
@@ -30,7 +30,7 @@ jobs:
         with:
           route: GET /repos/{owner}/{repo}/collaborators
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository_name }}
+          repo: ${{ github.event.repository.name }}
           headers: |
             Accept: application/vnd.github.v3+json
             Authorization: token ${{ secrets.GITHUB_TOKEN }}
