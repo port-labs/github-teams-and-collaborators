@@ -8,6 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
+      checks: read
+      deployments: read
+      discussions: read
+      id-token: read
+      issues: read
+      packages: read
+      pull-requests: read
+      pages: read
+      repository-projects: read
+      security-events: read
+      statuses: read
 
     steps:
       - name: Get Repo Users
