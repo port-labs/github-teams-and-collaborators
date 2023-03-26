@@ -4,8 +4,10 @@ on:
 name: Populate teams and collaborators to Port
 
 jobs:
-  populate-teams:
+  populate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Get Repo Users
         id: collaborators
