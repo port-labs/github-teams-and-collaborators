@@ -7,6 +7,19 @@ jobs:
   populate-teams:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Repo Users
+        id: collaborators
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/{owner}/{repo}/collaborators
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print collaborators
+        run: |
+          echo "collaborators:"
+          echo "${{ steps.collaborators.outputs.data }}"                 
       - name: Get Repo Teams
         id: teams
         uses: octokit/request-action@v2.x
@@ -20,17 +33,4 @@ jobs:
         run: |
           echo "Teams:"
           echo "${{ steps.teams.outputs.data }}"        
-      - name: Get Repo Users
-        id: collaborators
-        uses: octokit/request-action@v2.x
-        with:
-          route: GET /repos/{owner}/{repo}/collaborators
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print collaborators
-        run: |
-          echo "collaborators:"
-          echo "${{ steps.collaborators.outputs.data }}"             
 
