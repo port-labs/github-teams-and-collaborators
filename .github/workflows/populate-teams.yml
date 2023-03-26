@@ -1,0 +1,41 @@
+on:
+  workflow_dispatch:
+  
+name: Populate teams to Port
+
+jobs:
+  populate-teams:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repo Teams
+        id: teams
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/{owner}/{repo}/teams
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          headers: |
+            Accept: application/vnd.github.v3+json
+            Authorization: token ${{ secrets.GITHUB_TOKEN }}
+      - name: Print Teams
+        run: |
+          echo "Teams:"
+          echo "${{ steps.teams.outputs.data }}"        
+      - name: Get Repo Users
+        id: collaborators
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/{owner}/{repo}/collaborators
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          headers: |
+            Accept: application/vnd.github.v3+json
+            Authorization: token ${{ secrets.GITHUB_TOKEN }}
+      - name: Log Users
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const collaborators = JSON.parse('${{ steps.collaborators.outputs.data }}');
+            console.log("Users:");
+            collaborators.forEach(collaborator => console.log(collaborator.login, collaborator.permissions.admin));          
+
