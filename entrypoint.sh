@@ -2,9 +2,9 @@
 
 github_token="$INPUT_TOKEN"
 github_repo="$INPUT_REPO"
-port_client_id="$INPUT_PORT_CLIENT_ID"
-port_client_secret="$INPUT_PORT_CLIENT_SECRET"
-blueprint_identifier="$INPUT_BLUEPRINT_IDENTIFIER"
+port_client_id="$INPUT_PORTCLIENTID"
+port_client_secret="$INPUT_PORTCLIENTSECRET"
+blueprint_identifier="$INPUT_BLUEPRINTIDENTIFIER"
 
 echo "Getting collaborators and teams for $github_repo"
 
