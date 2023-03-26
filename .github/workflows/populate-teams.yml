@@ -1,8 +1,11 @@
 on:
   workflow_dispatch:
   
-name: Populate teams to Port
+name: Populate teams and users to Port
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
 jobs:
   populate-teams:
     runs-on: ubuntu-latest
