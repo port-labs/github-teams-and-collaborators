@@ -6,19 +6,6 @@ name: Populate teams and collaborators to Port
 jobs:
   populate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-      checks: read
-      deployments: read
-      discussions: read
-      issues: read
-      packages: read
-      pull-requests: read
-      pages: read
-      repository-projects: read
-      security-events: read
-      statuses: read
     steps:
       - name: Get Repo Users
         id: collaborators
@@ -28,18 +15,11 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_ADMIN_TOKEN }}
       - name: Print collaborators
         run: |
           echo "collaborators:"
           echo "${{ steps.collaborators.outputs.data }}"                 
-      - run: |
-          echo $(curl -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/teams)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}            
       - name: Get Repo Teams
         id: teams
         uses: octokit/request-action@v2.x
@@ -48,7 +28,7 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_ADMIN_TOKEN }}
       - name: Print Teams
         run: |
           echo "Teams:"
