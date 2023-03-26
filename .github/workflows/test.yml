@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 
-name: Populate teams and collaborators to Port
+name: test
 
 jobs:
   populate:
