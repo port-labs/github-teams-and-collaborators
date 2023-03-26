@@ -30,10 +30,10 @@ teams=$(curl \
 echo "::set-output name=collaborators::$collaborators"
 echo "::set-output name=teams::$teams"
 
-access_token=$(curl --location --request POST 'https://api.getport.io/v1/auth/access_token' --header 'Content-Type: application/json' --data-raw '{
-	"clientId": "$portClientId",
-	"clientSecret": "$portClientSecret",
-}' | jq '.accessToken' | sed 's/"//g')
+access_token=$(curl --location --request POST 'https://api.getport.io/v1/auth/access_token' --header 'Content-Type: application/json' --data-raw "{
+	\"clientId\": \"$portClientId\",
+	\"clientSecret\": \"$portClientSecret\"
+}" | jq '.accessToken' | sed 's/"//g')
 
 echo "Validating if a blueprint with the identifier $blueprintIdentifier identifier exists in Port"
 
