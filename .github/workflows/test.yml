@@ -4,10 +4,10 @@ on:
 name: test
 
 jobs:
-  populate:
+  populate-teams:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Repo Users
+      - name: Populate teams and users
         uses: port-labs/github-teams-and-collaborators@v1
         with:
           repo: ${{ github.repository }}
