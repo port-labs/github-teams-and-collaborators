@@ -3,7 +3,7 @@ FROM alpine:latest
 
 RUN apk add --no-cache jq
 
-ADD entrypoint.sh /
+COPY entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh
 
