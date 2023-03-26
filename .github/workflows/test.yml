@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+
+name: Populate teams and collaborators to Port
+
+jobs:
+  populate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repo Users
+        uses: port-labs/github-teams-and-collaborators@v1
+        with:
+          repo: ${{ github.repository }}
+          token: ${{ secrets.GIT_ADMIN_TOKEN }}
+          portClientId: ${{ secrets.PORT_CLIENT_ID }}
+          portClientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
