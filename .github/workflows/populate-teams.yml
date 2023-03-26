@@ -5,7 +5,7 @@ name: Populate teams and users to Port
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+
 jobs:
   populate-teams:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
         with:
           route: GET /repos/{owner}/{repo}/teams
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
+          repo: ${{ github.event.repository_name }}
           headers: |
             Accept: application/vnd.github.v3+json
             Authorization: token ${{ secrets.GITHUB_TOKEN }}
@@ -30,7 +30,7 @@ jobs:
         with:
           route: GET /repos/{owner}/{repo}/collaborators
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
+          repo: ${{ github.event.repository_name }}
           headers: |
             Accept: application/vnd.github.v3+json
             Authorization: token ${{ secrets.GITHUB_TOKEN }}
