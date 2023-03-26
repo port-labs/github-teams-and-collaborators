@@ -16,10 +16,6 @@ jobs:
           repo: ${{ github.event.repository.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_ADMIN_TOKEN }}
-      - name: Print collaborators
-        run: |
-          echo "collaborators:"
-          echo "${{ steps.collaborators.outputs.data }}"                 
       - name: Get Repo Teams
         id: teams
         uses: octokit/request-action@v2.x
@@ -29,8 +25,3 @@ jobs:
           repo: ${{ github.event.repository.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_ADMIN_TOKEN }}
-      - name: Print Teams
-        run: |
-          echo "Teams:"
-          echo "${{ steps.teams.outputs.data }}"        
-
