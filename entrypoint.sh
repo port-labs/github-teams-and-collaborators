@@ -39,7 +39,7 @@ echo "Validating if a blueprint with the identifier $blueprintIdentifier identif
 
 response=$(curl -X 'GET' \
   "https://api.getport.io/v1/blueprints/$blueprintIdentifier" \ 
-  -H 'Content-Type: application/json' \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $access_token" \
   --write-out '%{http_code}' \
   --silent \
